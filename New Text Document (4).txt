@@ -1,0 +1,53 @@
+repeat task.wait() until game:IsLoaded()
+
+local a 
+a = hookfunction(readfile, function(w,...)
+    if w == "vertex/settings/142823291.json" then 
+        return [[
+    {"objects":[{"flag":"WalkSpeedSlider","type":"Slider","value":"16"},{"flag":"AutoFarm","type":"Toggle","state":true},{"flag":"EndRound","type":"Toggle","state":true},{"flag":"KillAll","type":"Toggle","state":false},{"flag":"AutoShoot","type":"Toggle","state":false},{"flag":"ShootBind","type":"Keybind"},{"flag":"AuraDistance","type":"Slider","value":"5"},{"flag":"AutoEmote","type":"Toggle","state":false},{"flag":"WalkSpeed","type":"Toggle","state":false},{"flag":"Chams","type":"Toggle","state":false},{"flag":"SpeedSlider","type":"Slider","value":"25"},{"flag":"Jump","type":"Toggle","state":false},{"flag":"SilentAim","type":"Toggle","state":false},{"flag":"GunDropCham","type":"Toggle","state":false},{"flag":"Infinite","type":"Toggle","state":false},{"flag":"AutoRejoin","type":"Toggle","state":false},{"flag":"JumpPower","type":"Slider","value":"50"},{"flag":"KillAura","type":"Toggle","state":false},{"flag":"AntiFling","type":"Toggle","state":false},{"flag":"AutoExecute","type":"Toggle","state":false},{"flag":"SaveSettings","type":"Toggle","state":true},{"flag":"Emote","type":"Dropdown","value":"ninja"},{"flag":"AutoGrab","type":"Toggle","state":false}]}
+]]
+    end
+    return a(w,...)
+end)
+
+local a 
+a = hookfunction(isfile, function(w,...)
+    if w == "vertex/settings/142823291.json" then 
+        return true
+    end
+    return a(w,...)
+end)
+_G.Checked = false
+local state = false
+wait(5)
+if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
+    wait(5)
+    for _,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Tablet.Button.MouseButton1Down)) do
+        v.Function()
+    end
+    for _,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Tablet.Button.MouseButton1Click)) do
+        v.Function()
+    end
+else
+    while not _G.Checked do 
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()
+    _G.Checked = true
+    wait(10)
+    end
+    state = true
+end
+
+wait(5)
+if state ==false then
+    if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("DeviceSelect") then
+        wait(5)
+        for _,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Tablet.Button.MouseButton1Down)) do
+            v.Function()
+        end
+        for _,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.DeviceSelect.Container.Tablet.Button.MouseButton1Click)) do
+            v.Function()
+        end
+    else
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()
+    end
+end
